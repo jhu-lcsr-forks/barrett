@@ -1,8 +1,8 @@
 <package>
-  <name>libbarrett</name>
+  <name>barrett</name>
   <version>2.6.0</version>
     <description >
-      libbarrett
+      barrett
     </description>
     <license>GPL v2 with linking exception</license>
     <maintainer email="support@barrett.com">Barrett Technologies</maintainer>
