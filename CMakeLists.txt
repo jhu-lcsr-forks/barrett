@@ -72,6 +72,7 @@ set(exported_libraries "")
 
 ## Put libbarrett headers in the include path
 include_directories("${PROJECT_SOURCE_DIR}/include/")
+include_directories("${PROJECT_BINARY_DIR}/include")
 set(exported_include_dirs ${exported_include_dirs} ${CMAKE_INSTALL_PREFIX}/include)
 set(exported_link_dirs ${exported_link_dirs} ${CMAKE_INSTALL_PREFIX}/lib)
 
@@ -177,9 +178,8 @@ endif()
 set(BARRETT_ETC_PATH ${CMAKE_INSTALL_PREFIX}/etc/barrett/)
 configure_file(
   ${PROJECT_SOURCE_DIR}/include/barrett/config.h.in 
-  ${CMAKE_BINARY_DIR}/include/barrett/config.h)
-include_directories("${CMAKE_BINARY_DIR}/include")
-install(FILES ${CMAKE_BINARY_DIR}/include/barrett/config.h 
+  ${PROJECT_BINARY_DIR}/include/barrett/config.h)
+install(FILES ${PROJECT_BINARY_DIR}/include/barrett/config.h 
   DESTINATION ${CMAKE_INSTALL_PREFIX}/include/barrett)
 
 set(config_dir ${BARRETT_ETC_PATH})
