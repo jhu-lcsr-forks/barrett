@@ -142,6 +142,7 @@ add_subdirectory(src)
 # The trailing slash in "include/" is important
 install(DIRECTORY include/
 	DESTINATION include
+	PATTERN ".h"
 	PATTERN ".svn" EXCLUDE
 )
 
@@ -173,12 +174,15 @@ endif()
 
 
 ## Installs or updates configuration files
-# TODO(dc): Make this path configurable. It's currently hard-coded in:
-#     src/products/product_manager.cpp
-#     products/zerocal.cpp
-#     products/gravitycal.cpp
-#     ... others?
-set(config_dir /etc/barrett/)
+set(BARRETT_ETC_PATH ${CMAKE_INSTALL_PREFIX}/etc/barrett/)
+configure_file(
+  ${PROJECT_SOURCE_DIR}/include/barrett/config.h.in 
+  ${CMAKE_BINARY_DIR}/include/barrett/config.h)
+include_directories("${CMAKE_BINARY_DIR}/include")
+install(FILES ${CMAKE_BINARY_DIR}/include/barrett/config.h 
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/include/barrett)
+
+set(config_dir ${BARRETT_ETC_PATH})
 set(install_config_cmd ${PROJECT_SOURCE_DIR}/programs/install_config_files --source=${PROJECT_SOURCE_DIR}/config/ --dest=${config_dir})
 add_custom_target(install_config ${install_config_cmd} VERBATIM)
 
