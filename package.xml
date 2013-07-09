@@ -1,0 +1,22 @@
+<package>
+  <name>libbarrett</name>
+  <version>2.6.0</version>
+    <description >
+      libbarrett
+    </description>
+    <license>GPL v2 with linking exception</license>
+    <maintainer email="support@barrett.com">Barrett Technologies</maintainer>
+    <author>Barrett Technologies</author>
+    
+    <buildtool_depend>cmake</buildtool_depend>
+
+    <build_depend>libgsl</build_depend>
+    <build_depend>libxenomai-dev</build_depend>
+    <build_depend>libconfig++8-dev</build_depend>
+    
+    <export>
+      <build_type>cmake</build_type>
+    </export>
+
+</package>
+
