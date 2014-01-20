@@ -43,6 +43,16 @@ public:
 	virtual int receiveRaw(int& busId, unsigned char* data, size_t& len,
 			bool blocking = true) const
 		{ return bus->receiveRaw(busId, data, len, blocking); }
+  
+  virtual void flushBuffers()
+    {
+      for(std::map<int, MessageBuffer>::iterator buffer_it = messageBuffers.begin();
+          buffer_it != messageBuffers.end();
+          ++buffer_it)
+      {
+        buffer_it->second.clear();
+      }
+    }
 
 protected:
 	int updateBuffers() const;
@@ -69,7 +79,7 @@ private:
 		size_t len;
 	};
 
-	static const size_t MESSAGE_BUFFER_SIZE = 10;
+	static const size_t MESSAGE_BUFFER_SIZE = 10; // # of activate-idle changes  / 2
 	class MessageBuffer : public boost::circular_buffer<Message> {
 	public:
 		MessageBuffer() :
