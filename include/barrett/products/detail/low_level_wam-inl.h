@@ -321,7 +321,7 @@ void LowLevelWam<DOF>::update()
 		}
 	}
 
-	jv_best = (jp_best - jp_best_1) / (1e-9 * (now - lastUpdate));
+	jv_best = (jp_best - jp_best_1) / (1e-9 * rt_timer_ticks2ns(now - lastUpdate));
 	// TODO(dc): Detect unreasonably large velocities
 
 	jp_best_1 = jp_best;

@@ -60,7 +60,21 @@ set(barrett_SOURCES
 	stl_utils.cpp
 )
 
-set(libs ${Boost_LIBRARIES} ${GSL_LIBRARIES} config config++)  #TODO(dc): libconfig finder?
+find_library(LIBCONFIG_LIBRARY config PATHS /usr/local/lib)
+if(LIBCONFIG_LIBRARY)
+  message(STATUS "Found libconfig: ${LIBCONFIG_LIBRARY}")
+else()
+  message(FATAL_ERROR "Could not find libconfig.")
+endif()
+
+find_library(LIBCONFIG++_LIBRARY config++ PATHS /usr/local/lib)
+if(LIBCONFIG++_LIBRARY)
+  message(STATUS "Found libconfig++: ${LIBCONFIG++_LIBRARY}")
+else()
+  message(FATAL_ERROR "Could not find libconfig++.")
+endif()
+
+set(libs ${Boost_LIBRARIES} ${GSL_LIBRARIES} ${LIBCONFIG_LIBRARY} ${LIBCONFIG++_LIBRARY})  #TODO(dc): libconfig finder?
 if (NOT NON_REALTIME)
 	set(libs ${libs} ${XENOMAI_LIBRARY_NATIVE} ${XENOMAI_LIBRARY_XENOMAI} ${XENOMAI_LIBRARY_RTDM})
 endif()
