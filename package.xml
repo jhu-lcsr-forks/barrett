@@ -11,8 +11,12 @@
     <buildtool_depend>cmake</buildtool_depend>
 
     <build_depend>libgsl</build_depend>
-    <build_depend>libxenomai-dev</build_depend>
-    <build_depend>libconfig++8-dev</build_depend>
+    <!-- NOTE: you must have xenomai installed, but you may be using a different version than rosdep has keys for -->
+    <!--<build_depend>libxenomai-dev</build_depend>-->
+
+    <!-- NOTE: You must install barrett's patched libconfig binary -->
+    <!-- See here: http://support.barrett.com/wiki/Libbarrett/Installation#sixtyFour -->
+    <!--<build_depend>libconfig++8-dev</build_depend>-->
     
     <export>
       <build_type>cmake</build_type>
